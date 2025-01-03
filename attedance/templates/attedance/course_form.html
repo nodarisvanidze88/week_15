@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% if course %}Edit Course{% else %}Add Course{% endif %}</title>
+</head>
+<body>
+    <h1>{% if course %}Edit Course{% else %}Add Course{% endif %}</h1>
+    <form method="post">
+        {% csrf_token %}
+        <label for="name">Name:</label>
+        <input type="text" name="name" id="name" value="{{ course.name|default:'' }}" required><br><br>
+
+        <label for="description">Description:</label><br>
+        <textarea name="description" id="description" rows="5" required>{{ course.description|default:'' }}</textarea><br><br>
+
+        <label for="start_date">Start Date:</label>
+        <input type="date" name="start_date" id="start_date" value="{{ course.start_date }}" required><br><br>
+
+        <label for="end_date">End Date:</label>
+        <input type="date" name="end_date" id="end_date" value="{{ course.end_date|default:'' }}" required><br><br>
+
+        <button type="submit">Save</button>
+        <a href="{% url 'course_list' %}">Cancel</a>
+    </form>
+</body>
+</html>

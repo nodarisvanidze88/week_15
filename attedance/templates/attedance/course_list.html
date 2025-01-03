@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Course List</title>
+</head>
+<body>
+    <h1>Courses</h1>
+    <a href="{% url 'course_create' %}">Add Course</a>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for course in courses %}
+                <tr>
+                    <td>{{ course.name }}</td>
+                    <td>{{ course.description }}</td>
+                    <td>{{ course.start_date }}</td>
+                    <td>{{ course.end_date }}</td>
+                    <td>
+                        <a href="{% url 'course_edit' course.id %}">Edit</a> | 
+                        <a href="{% url 'course_delete' course.id %}">Delete</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
